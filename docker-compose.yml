@@ -1,0 +1,111 @@
+services:
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: zookeeper
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+    #ports:
+    #  - "2181:2181"
+    networks:
+      - sofka-network
+
+  kafka:
+    image: confluentinc/cp-kafka:7.9.2
+    container_name: kafka
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
+      KAFKA_LISTENERS: PLAINTEXT://0.0.0.0:9092,HOST://0.0.0.0:29092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,HOST://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,HOST:PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+    ports:
+      - "9092:9092"
+      - "29092:29092"
+    depends_on:
+      - zookeeper
+    networks:
+      - sofka-network
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions", "--bootstrap-server", "kafka:9092"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+
+  client-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: clientdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./client/client_db.sql:/docker-entrypoint-initdb.d/client_db.sql
+    networks:
+      - sofka-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "clientdb", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  account-db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: accountdb
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
+    volumes:
+      - ./account/account_db.sql:/docker-entrypoint-initdb.d/acount_db.sql
+    networks:
+      - sofka-network
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "postgres", "-d", "accountdb", "-h", "localhost"]
+      interval: 10s
+      retries: 5
+      start_period: 30s
+      timeout: 5s
+
+  msclient:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: msclient
+    restart: always
+    ports:
+      - "8080:8080"
+    networks:
+      - sofka-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      db_cliente:
+        condition: service_healthy
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+    
+  msaccount:
+    build:
+      context: ./account
+      dockerfile: Dockerfile
+    container_name: msaccount
+    restart: always
+    ports:
+      - "8081:8081"
+    networks:
+      - sofka-network
+    depends_on:
+      kafka:
+        condition: service_healthy
+      db_cuenta:
+        condition: service_healthy
+    environment:
+      KAFKA_BOOTSTRAP_SERVERS: kafka:9092
+
+networks:
+  sofka-network:
+    driver: bridge
