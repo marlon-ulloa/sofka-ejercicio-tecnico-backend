@@ -20,6 +20,7 @@ Para ejecutar las pruebas de forma individual, es decir, primero las pruebas uni
    ```
 <img width="725" height="696" alt="cliente unittest" src="https://github.com/user-attachments/assets/e7f4e636-1290-47a5-8e9d-8d389e4f3fce" />
 
+
 2. Ejecución de pruebas de integración con Mvc de Spring:
   ```
    mvn -Dtest=ClientControllerIntegrationTest test
@@ -48,6 +49,9 @@ Para ejecutar las pruebas de forma individual, es decir, primero las pruebas uni
   ```
    mvn -Dtest=AccountTest test
    ```
+<img width="1016" height="935" alt="accountkarate" src="https://github.com/user-attachments/assets/a4b04b36-f7f1-441c-9252-02239f5ea25b" />
+
+
 ## Cobertura de Código
 Se implementó añadió framework de jacoco en el pom de los dos proyectos para obtener la cobertura de código de las pruebas, para ello, una vez que se jecuten las pruebas, sea de manera general o individual, en la carpeta **target** de cada microservicio, ecistirá un directorio **jacoco-report**, dentro del cual se encuentra un archivo **index.html**, si lo abrimos veremos el porcentaje de cobertura:
 <img width="1145" height="373" alt="ejemplo code coverage" src="https://github.com/user-attachments/assets/15906b5c-b0aa-4b29-806d-a99c561440d9" />
