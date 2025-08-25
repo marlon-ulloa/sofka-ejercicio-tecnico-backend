@@ -13,7 +13,7 @@ import java.util.List;
  * Clase que expone los endpoints para los movimientos
  */
 @RestController
-@RequestMapping("/movimientos")
+@RequestMapping("/api/movimientos")
 public class MovementController {
     private final MovementService movementService;
 

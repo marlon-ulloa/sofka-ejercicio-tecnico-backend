@@ -44,7 +44,7 @@ class ClientControllerIntegrationTest {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(client);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/clientes")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/clientes")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
@@ -52,7 +52,7 @@ class ClientControllerIntegrationTest {
 
     @Test
     public void getAllClients() throws Exception{
-        mockMvc.perform(MockMvcRequestBuilders.get("/clientes"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/clientes"))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 }

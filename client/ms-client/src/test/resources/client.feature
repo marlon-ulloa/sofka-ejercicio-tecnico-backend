@@ -1,7 +1,7 @@
 Feature: Test Of Clients
 
   Background:
-    * url 'http://localhost:8080'
+    * url 'http://localhost:8080/api'
 
   Scenario: Create a client
     Given path 'clientes'

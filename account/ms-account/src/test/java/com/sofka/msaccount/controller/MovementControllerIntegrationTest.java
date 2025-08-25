@@ -43,7 +43,7 @@ class MovementControllerIntegrationTest {
         String json = objectMapper.writeValueAsString(movement);
 
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/movimientos")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/movimientos")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(MockMvcResultMatchers.status().isCreated());

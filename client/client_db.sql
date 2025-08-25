@@ -1,3 +1,7 @@
+/* ===========================================
+   TABLA: personas
+   Descripción: Almacena la información de las personas.
+=========================================== */
 CREATE TABLE personas (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(100) NOT NULL,
@@ -8,6 +12,10 @@ CREATE TABLE personas (
     telefono VARCHAR(20)
 );
 
+/* ===========================================
+   TABLA: clientes
+   Descripción: Almacena la información de los clientes.
+=========================================== */
 CREATE TABLE clientes (
     id SERIAL PRIMARY KEY,
     personaId INT REFERENCES personas(id),

@@ -1,0 +1,317 @@
+{
+	"info": {
+		"_postman_id": "45f41e5a-651c-4dab-840f-873072bdeada",
+		"name": "Sofka",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2550211"
+	},
+	"item": [
+		{
+			"name": "CREATE CLIENTE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Juan Osorio\",\n    \"genero\": \"Masculino\",\n    \"edad\": 31,\n    \"identificacion\": \"0103080131   \",\n    \"direccion\": \"13 junio y Equinoccial\",\n    \"telefono\": \"098874587\",\n    \"contrasena\": \"1245\",\n    \"estado\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTUALIZAR CLIENTE",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"nombre\": \"Marianela Montalvo\",\n    \"genero\": \"Femenino\",\n    \"edad\": 31,\n    \"identificacion\": \"0105131221\",\n    \"direccion\": \"Amazonas y NNUU\",\n    \"telefono\": \"097548965\",\n    \"contrasena\": \"5678\",\n    \"estado\": true\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREATE ACCOUNT",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numeroCuenta\": \"585545\",\r\n    \"tipoCuenta\": \"Corriente\",\r\n    \"saldoInicial\": 1000,\r\n    \"estado\": true,\r\n    \"identification\": \"0105131247\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CREAR MOVIMIENTO",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipoMovimiento\": \"Retiro\",\r\n    \"valor\": 540,\r\n    \"cuenta\": {\r\n        \"numeroCuenta\": \"496825\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/movimientos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"movimientos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "MOVIMIENTOS POR CUENTA",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/movimientos?numeroCuenta=200001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"movimientos"
+					],
+					"query": [
+						{
+							"key": "numeroCuenta",
+							"value": "200001"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REPORTE ESTADO CUENTA",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"tipoMovimiento\": \"Retiro\",\r\n    \"valor\": 575,\r\n    \"cuenta\": {\r\n        \"numeroCuenta\": \"478758\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/reportes?clienteId=0105131221&fechaInicio=2025-08-08T00:00:00&fechaFin=2025-08-31T23:59:59",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"reportes"
+					],
+					"query": [
+						{
+							"key": "clienteId",
+							"value": "0105131221"
+						},
+						{
+							"key": "fechaInicio",
+							"value": "2025-08-08T00:00:00"
+						},
+						{
+							"key": "fechaFin",
+							"value": "2025-08-31T23:59:59"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OBTENER TODOS LOS CLIENTES",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OBTENER CLIENTE POR IDENTIFICACION",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/getbyidentification?identification=0105131247",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"getbyidentification"
+					],
+					"query": [
+						{
+							"key": "identification",
+							"value": "0105131247"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BORRAR CLIENTE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/clientes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "OBTENER TODAS LAS CUENTAS",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ACTUALIZAR CUENTA",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"numeroCuenta\": \"200001\",\r\n    \"tipoCuenta\": \"Ahorros\",\r\n    \"saldoInicial\": 7000,\r\n    \"saldoActual\": 5000,\r\n    \"estado\": true,\r\n    \"identification\": \"0105131221\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/cuentas/6",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"cuentas",
+						"6"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

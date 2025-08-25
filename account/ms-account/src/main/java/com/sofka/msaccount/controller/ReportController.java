@@ -23,7 +23,7 @@ import java.util.Map;
  * CLase que espone los endpoints para la generacion del reporte de estado de cuentas
  */
 @RestController
-@RequestMapping("/reportes")
+@RequestMapping("/api/reportes")
 public class ReportController {
     @Autowired
     private AsyncProducerService asyncProducerService;

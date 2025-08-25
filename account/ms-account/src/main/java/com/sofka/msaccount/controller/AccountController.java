@@ -20,7 +20,7 @@ import java.util.List;
  * Clase que expone los endpoints a ser consumidos
  */
 @RestController
-@RequestMapping("/cuentas")
+@RequestMapping("/api/cuentas")
 public class AccountController {
     private final AccountService accountService;
     private final MovementService movementService;

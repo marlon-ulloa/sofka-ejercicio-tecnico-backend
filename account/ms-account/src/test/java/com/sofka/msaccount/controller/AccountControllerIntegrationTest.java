@@ -38,7 +38,7 @@ class AccountControllerIntegrationTest {
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(accountRequest);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/cuentas")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/cuentas")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(json))
                 .andExpect(MockMvcResultMatchers.status().isCreated());
