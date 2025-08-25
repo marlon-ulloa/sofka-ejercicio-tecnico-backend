@@ -54,8 +54,10 @@ Se implementó añadió framework de jacoco en el pom de los dos proyectos para 
 
 ## Instrucciones para consumir los endpoints
 1. Dentro de la carpeta **postmancollection** se encuentra el archivo en formato json, solo se debe importar ese archivo en la herrmaienta postman.
+
 2. Una vez importado el archivo, tendremos algo similar a la siguiente imagen:
    <img width="319" height="329" alt="postman" src="https://github.com/user-attachments/assets/1fb6291e-9f25-4b4d-8d8e-a02baa353def" />
+
 3. Ejecutar el Endpoint **CREATE CLIENTE**:
 <img width="403" height="590" alt="crear cliente" src="https://github.com/user-attachments/assets/6c03914f-0c67-4f1b-b4a2-025307b93336" />
 
