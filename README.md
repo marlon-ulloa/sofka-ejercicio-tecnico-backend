@@ -19,6 +19,7 @@ Para ejecutar las pruebas de forma individual, es decir, primero las pruebas uni
    mvn -Dtest=ClientServiceTest test
    ```
 <img width="725" height="696" alt="cliente unittest" src="https://github.com/user-attachments/assets/e7f4e636-1290-47a5-8e9d-8d389e4f3fce" />
+
 2. Ejecución de pruebas de integración con Mvc de Spring:
   ```
    mvn -Dtest=ClientControllerIntegrationTest test
